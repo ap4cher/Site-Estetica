@@ -97,13 +97,14 @@
     .section-label::before { content: '— '; opacity: 0.6; }
     .section-label::after  { content: ' —'; opacity: 0.6; }
     .section-title {
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 1.85rem;
-      font-weight: 400;
+      font-weight: 700;
       color: var(--text-dark);
       line-height: 1.2;
       margin-bottom: 16px;
     }
+    h1, .h1 { font-family: var(--font-display) !important; }
     .section-sub {
       font-size: 0.975rem;
       color: var(--text-medium);
@@ -257,32 +258,55 @@
       color: white;
     }
 
-    /* ── DOR E DESEJO ── */
-    .dor-desejo { background: var(--bg); }
-    .dd-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
-    .dd-block { background: white; border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); }
-    .dd-block-title {
-      font-family: var(--font-display);
-      font-size: 1.1rem; color: var(--text-dark);
-      margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+    /* ── IDENTIFICA (hero premium) ── */
+    .identifica {
+      background: linear-gradient(150deg, #3B1608 0%, #5C2C14 40%, #7D4535 80%, #924F41 100%);
+      position: relative; overflow: hidden;
     }
-    .dd-icon-marker {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--primary-light); flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+    .identifica::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,184,122,0.08) 0%, transparent 65%);
+      pointer-events: none;
     }
-    .dd-icon-marker svg { width: 14px; height: 14px; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .dd-item {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 0.875rem; color: var(--text-medium); line-height: 1.6;
-      margin-bottom: 10px; font-weight: 400;
+    .identifica > .container { position: relative; z-index: 1; }
+    .identifica .section-label { color: var(--accent); }
+    .identifica .section-title { color: white; }
+    .identifica-intro { color: rgba(255,255,255,0.65); font-size: 0.93rem; margin-top: -8px; margin-bottom: 40px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .identifica-grid { display: flex; flex-direction: column; gap: 20px; }
+    .id-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,250,211,0.14);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      backdrop-filter: blur(8px);
     }
-    .dd-item:last-child { margin-bottom: 0; }
-    .dd-item::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0; margin-top: 7px;
+    .id-card-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
     }
-    .dd-block.desejo .dd-item::before { background: var(--primary); }
+    .id-card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,250,211,0.25);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .id-card-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .id-card.pain .id-card-icon svg  { stroke: #FFB07C; }
+    .id-card.desire .id-card-icon svg { stroke: #7DE8A0; }
+    .id-card-title { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .id-card.pain .id-card-title  { color: #FFD0B0; }
+    .id-card.desire .id-card-title { color: #A5F3C0; }
+    .id-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.78);
+      line-height: 1.65; margin-bottom: 12px; font-weight: 400;
+    }
+    .id-item:last-child { margin-bottom: 0; }
+    .id-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+    }
+    .id-card.pain  .id-dot { background: #FFB07C; }
+    .id-card.desire .id-dot { background: #7DE8A0; }
 
     /* ── SOLUÇÃO ── */
     .solucao { background: white; }
@@ -306,23 +330,45 @@
     .sol-card-title { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 5px; }
     .sol-card-text { font-size: 0.82rem; color: var(--text-medium); line-height: 1.6; font-weight: 400; }
 
-    /* ── COMO FUNCIONA ── */
+    /* ── COMO FUNCIONA (animado) ── */
     .como-funciona { background: var(--bg); }
-    .steps-grid { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
-    .step { display: flex; gap: 20px; align-items: flex-start; padding-bottom: 32px; }
+    .steps-grid { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+    .step {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding-bottom: 40px;
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .step.visible { opacity: 1; transform: translateY(0); }
     .step:last-child { padding-bottom: 0; }
     .step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
     .step-num {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--primary); color: white;
-      font-family: var(--font-display); font-size: 1.3rem;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fffad3;
+      font-family: var(--font-display); font-size: 1.2rem;
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(125,69,53,0.30);
+      transition: transform 0.4s ease 0.3s, box-shadow 0.4s ease 0.3s;
     }
-    .step-line { width: 2px; flex: 1; min-height: 32px; background: var(--border); margin-top: 4px; }
+    .step.visible .step-num { transform: scale(1.08); box-shadow: 0 6px 24px rgba(125,69,53,0.45); }
+    .step-line { width: 2px; flex: 1; min-height: 40px; background: var(--border); margin-top: 6px; }
     .step:last-child .step-line { display: none; }
-    .step-content { padding-top: 10px; }
-    .step-title { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 4px; }
-    .step-text { font-size: 0.84rem; color: var(--text-medium); line-height: 1.6; font-weight: 400; }
+    .step-content { padding-top: 12px; flex: 1; }
+    .step-tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 6px; display: block;
+    }
+    .step-title { font-weight: 700; font-size: 1.05rem; color: var(--text-dark); margin-bottom: 6px; line-height: 1.3; }
+    .step-text { font-size: 0.84rem; color: var(--text-medium); line-height: 1.7; font-weight: 400; }
+    .step-highlight {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary-light); border-radius: 6px;
+      padding: 5px 10px; font-size: 0.76rem; font-weight: 600;
+      color: var(--primary-dark); margin-top: 10px;
+    }
+    .step-highlight svg { width: 13px; height: 13px; stroke: var(--primary); fill: none; stroke-width: 2; }
 
     /* ── DIFERENCIAIS ── */
     .diferenciais .section-title { color: white; }
@@ -502,12 +548,9 @@
       .hero-tagline { font-size: 1.6rem; }
       .hero-stat-num { font-size: 1.9rem; }
       .proof-inner { flex-wrap: nowrap; }
-      .steps-grid { flex-direction: row; align-items: flex-start; gap: 0; }
-      .step { flex-direction: column; align-items: center; text-align: center; padding-bottom: 0; flex: 1; position: relative; }
-      .step-left { flex-direction: row; width: 100%; justify-content: center; }
-      .step-line { width: 100%; height: 2px; min-height: 2px; margin-top: 0; position: absolute; top: 24px; left: 50%; right: 0; }
-      .step:last-child .step-line { display: none; }
-      .step-content { padding-top: 20px; padding-left: 8px; padding-right: 8px; }
+      .identifica-grid { flex-direction: row; }
+      .id-card { flex: 1; }
+      .steps-grid { max-width: 680px; margin-left: auto; margin-right: auto; }
       .dif-grid-lp { grid-template-columns: repeat(3, 1fr); }
       .vsl-grid { grid-template-columns: repeat(4, 1fr); }
       .float-wpp { width: 58px; height: 58px; bottom: 28px; right: 28px; }
@@ -618,38 +661,42 @@
     </div>
   </div>
 
-  <!-- 3. DOR E DESEJO -->
-  <section class="dor-desejo section">
+  <!-- 3. VOCÊ SE IDENTIFICA (hero premium) -->
+  <section class="identifica section">
     <div class="container">
       <div class="text-center">
-        <span class="section-label" style="color:#974a00;">Você se identifica?</span>
+        <span class="section-label">Você se identifica?</span>
         <h2 class="section-title">Entendemos o que você está vivendo</h2>
+        <p class="identifica-intro">Se você se vê em algum desses cenários, a Vibe Terapias foi feita para você.</p>
       </div>
-      <div class="dd-grid">
-        <div class="dd-block">
-          <div class="dd-block-title">
-            <div class="dd-icon-marker">
+      <div class="identifica-grid">
+
+        <div class="id-card pain">
+          <div class="id-card-header">
+            <div class="id-card-icon">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
-            O que você pode estar vivendo
+            <span class="id-card-title">O que você pode estar vivendo</span>
           </div>
-          <p class="dd-item">Dor lombar, cervical ou no pescoço que simplesmente não passa</p>
-          <p class="dd-item">Já tomou remédio, fez fisioterapia e a dor voltou em semanas</p>
-          <p class="dd-item">Acorda com dor, dorme mal e perdeu mobilidade no dia a dia</p>
-          <p class="dd-item">Cansado(a) de soluções que tratam o sintoma e não a causa</p>
+          <div class="id-item"><span class="id-dot"></span>Dor lombar, cervical ou no pescoço que simplesmente não passa</div>
+          <div class="id-item"><span class="id-dot"></span>Já tomou remédio, fez fisioterapia e a dor voltou em semanas</div>
+          <div class="id-item"><span class="id-dot"></span>Acorda com dor, dorme mal e perdeu mobilidade no dia a dia</div>
+          <div class="id-item"><span class="id-dot"></span>Cansado(a) de soluções que tratam o sintoma e não a causa</div>
         </div>
-        <div class="dd-block desejo">
-          <div class="dd-block-title">
-            <div class="dd-icon-marker">
+
+        <div class="id-card desire">
+          <div class="id-card-header">
+            <div class="id-card-icon">
               <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            O que você merece ter
+            <span class="id-card-title">O que você merece ter</span>
           </div>
-          <p class="dd-item">Voltar a trabalhar, dormir e se mover sem dor</p>
-          <p class="dd-item">Um tratamento que age na causa real do problema</p>
-          <p class="dd-item">Cuidado individualizado e acompanhamento de verdade</p>
-          <p class="dd-item">Recuperar sua qualidade de vida e independência física</p>
+          <div class="id-item"><span class="id-dot"></span>Voltar a trabalhar, dormir e se mover sem dor</div>
+          <div class="id-item"><span class="id-dot"></span>Um tratamento que age na causa real do problema</div>
+          <div class="id-item"><span class="id-dot"></span>Cuidado individualizado e acompanhamento de verdade</div>
+          <div class="id-item"><span class="id-dot"></span>Recuperar sua qualidade de vida e independência física</div>
         </div>
+
       </div>
     </div>
   </section>
@@ -701,35 +748,65 @@
         <span class="section-label" style="color:#974a00;">Simples assim</span>
         <h2 class="section-title">Como funciona</h2>
       </div>
-      <div class="steps-grid">
+      <div class="steps-grid" id="stepsGrid">
         <div class="step">
           <div class="step-left">
-            <div class="step-num">1</div>
+            <div class="step-num">01</div>
             <div class="step-line"></div>
           </div>
           <div class="step-content">
-            <div class="step-title">Solicite sua avaliação</div>
-            <p class="step-text">Preencha seus dados ou chame no WhatsApp. Em minutos nossa equipe entra em contato.</p>
+            <span class="step-tag">Primeiro passo</span>
+            <div class="step-title">Agende pelo WhatsApp</div>
+            <p class="step-text">Escolha o horário disponível e agende sua sessão.</p>
+            <span class="step-highlight">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Simples e rápido
+            </span>
           </div>
         </div>
         <div class="step">
           <div class="step-left">
-            <div class="step-num">2</div>
+            <div class="step-num">02</div>
             <div class="step-line"></div>
           </div>
           <div class="step-content">
-            <div class="step-title">Identificamos a causa</div>
-            <p class="step-text">Nosso especialista faz uma avaliação completa e indica o protocolo ideal para o seu caso.</p>
+            <span class="step-tag">Diagnóstico preciso</span>
+            <div class="step-title">Avaliação Termal</div>
+            <p class="step-text">Na primeira consulta, fazemos sua avaliação com a Câmera Termal para identificarmos a raiz da sua dor e montar seu protocolo personalizado.</p>
+            <span class="step-highlight">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Tecnologia exclusiva
+            </span>
           </div>
         </div>
         <div class="step">
           <div class="step-left">
-            <div class="step-num">3</div>
+            <div class="step-num">03</div>
             <div class="step-line"></div>
           </div>
           <div class="step-content">
+            <span class="step-tag">Resultado imediato</span>
             <div class="step-title">Você inicia o tratamento</div>
-            <p class="step-text">Com acompanhamento contínuo, conforto premium e protocolo pensado para dar resultado real.</p>
+            <p class="step-text">Com acompanhamento contínuo, você sente o alívio das dores logo na primeira sessão.</p>
+            <span class="step-highlight">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Protocolo exclusivo
+            </span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left">
+            <div class="step-num">04</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <span class="step-tag">Transformação definitiva</span>
+            <div class="step-title">Recuperação e bem-estar</div>
+            <p class="step-text">Evolução monitorada sessão a sessão, você sente relaxamento e o fim definitivo das suas dores!</p>
+            <span class="step-highlight">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Resultado duradouro
+            </span>
           </div>
         </div>
       </div>
@@ -1030,8 +1107,27 @@
       });
     });
 
-    // Fade in on scroll
-    const fadeEls = document.querySelectorAll('.sol-card, .vsl-card, .dif-card, .step, .dd-block, .faq-item, .oferta-card');
+    // Animação escalonada dos steps conforme rola
+    (function() {
+      const steps = document.querySelectorAll('.step');
+      if (!steps.length) return;
+      let triggered = false;
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            steps.forEach((step, i) => {
+              setTimeout(() => step.classList.add('visible'), i * 280);
+            });
+            sectionObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      sectionObserver.observe(document.querySelector('.como-funciona'));
+    })();
+
+    // Fade in on scroll (elementos gerais — exceto steps que têm animação própria)
+    const fadeEls = document.querySelectorAll('.sol-card, .vsl-card, .dif-card, .id-card, .faq-item, .oferta-card');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
