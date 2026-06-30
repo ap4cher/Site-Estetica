@@ -425,10 +425,13 @@
     .unidade-cidade { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 3px; }
     .unidade-endereco { font-size: 0.78rem; color: var(--text-medium); line-height: 1.55; font-weight: 400; }
     .unidade-link {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 0.74rem; font-weight: 600; color: var(--primary); margin-top: 9px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.76rem; font-weight: 700; color: var(--primary);
+      border: 1.5px solid var(--primary); border-radius: 50px;
+      padding: 7px 16px; margin-top: 12px;
+      transition: background 0.2s, color 0.2s;
     }
-    .unidade-link svg { width: 12px; height: 12px; stroke: var(--primary); fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .unidade-link:hover { background: var(--primary); color: white; }
     @media (min-width: 768px) { .unidades-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1024px) { .unidades-grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -828,57 +831,51 @@
     <div class="container">
       <div class="unidades-header">
         <span class="section-label" style="color:#974a00;">Estamos perto de você</span>
-        <h2 class="section-title">Nossas 8 Unidades</h2>
-        <p class="section-sub" style="max-width:500px;margin:0 auto;">SP, PR e SC. Escolha a unidade mais próxima e agende sua avaliação hoje.</p>
+        <h2 class="section-title">Nossas Unidades</h2>
+        <p class="section-sub" style="max-width:500px;margin:0 auto;">SP e PR. Escolha a unidade mais próxima e agende sua avaliação hoje.</p>
       </div>
       <div class="unidades-grid">
         <div class="unidade-card">
           <div class="unidade-estado">São Paulo — SP</div>
-          <div class="unidade-cidade">São Paulo – Augusta</div>
-          <div class="unidade-endereco">R. Augusta, 1250 – Consolação<br>São Paulo – SP</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+          <div class="unidade-cidade">Jardins</div>
+          <div class="unidade-endereco">Av. Brasil, 485 – Jardim Paulista, São Paulo – SP</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Jardins" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Jardins</a>
         </div>
         <div class="unidade-card">
           <div class="unidade-estado">São Paulo — SP</div>
-          <div class="unidade-cidade">São Paulo – Morumbi</div>
-          <div class="unidade-endereco">Av. Giovanni Gronchi, 5860 – Morumbi<br>São Paulo – SP</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+          <div class="unidade-cidade">Pinheiros</div>
+          <div class="unidade-endereco">Edifício Thera Office Faria Lima – R. Amaro Cavalheiro, 347, Andar 15, Sala 1519 – Pinheiros, São Paulo – SP</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Pinheiros" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Pinheiros</a>
         </div>
         <div class="unidade-card">
           <div class="unidade-estado">São Paulo — SP</div>
+          <div class="unidade-cidade">Moema</div>
+          <div class="unidade-endereco">Av. Rouxinol, 1041 – Sala 601 – Moema, São Paulo – SP</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Moema" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Moema</a>
+        </div>
+        <div class="unidade-card">
+          <div class="unidade-estado">São Paulo — SP</div>
+          <div class="unidade-cidade">Av. Paulista</div>
+          <div class="unidade-endereco">Av. Paulista, 1337 – Andar 15, Sala 151 – Bela Vista, São Paulo – SP</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Av.+Paulista" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Av. Paulista</a>
+        </div>
+        <div class="unidade-card">
+          <div class="unidade-estado">Barueri — SP</div>
+          <div class="unidade-cidade">Alphaville</div>
+          <div class="unidade-endereco">Edifício Station Square – 1º Andar, Cj 14 – Alameda Madeira, 53 – Barueri – SP</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Alphaville" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Alphaville</a>
+        </div>
+        <div class="unidade-card">
+          <div class="unidade-estado">Campinas — SP</div>
           <div class="unidade-cidade">Campinas</div>
-          <div class="unidade-endereco">Av. José de Souza Campos, 800<br>Nova Campinas – SP</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+          <div class="unidade-endereco">Av. Dr. Heitor Penteado, 330 – Parque Taquaral, Campinas – SP</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Campinas" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Campinas</a>
         </div>
         <div class="unidade-card">
-          <div class="unidade-estado">São Paulo — SP</div>
-          <div class="unidade-cidade">Santos</div>
-          <div class="unidade-endereco">Av. Ana Costa, 500 – Gonzaga<br>Santos – SP</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
-        </div>
-        <div class="unidade-card">
-          <div class="unidade-estado">Paraná — PR</div>
-          <div class="unidade-cidade">Curitiba</div>
-          <div class="unidade-endereco">Av. Batel, 1200 – Batel<br>Curitiba – PR</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
-        </div>
-        <div class="unidade-card">
-          <div class="unidade-estado">Paraná — PR</div>
+          <div class="unidade-estado">Londrina — PR</div>
           <div class="unidade-cidade">Londrina</div>
-          <div class="unidade-endereco">Av. Higienópolis, 1200 – Centro<br>Londrina – PR</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
-        </div>
-        <div class="unidade-card">
-          <div class="unidade-estado">Santa Catarina — SC</div>
-          <div class="unidade-cidade">Florianópolis</div>
-          <div class="unidade-endereco">R. Felipe Schmidt, 785 – Centro<br>Florianópolis – SC</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
-        </div>
-        <div class="unidade-card">
-          <div class="unidade-estado">Santa Catarina — SC</div>
-          <div class="unidade-cidade">Joinville</div>
-          <div class="unidade-endereco">R. 9 de Março, 450 – Centro<br>Joinville – SC</div>
-          <a href="#" class="unidade-link">Ver no mapa <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+          <div class="unidade-endereco">R. Alvarenga Peixoto, 26 – Lago Parque, Londrina – PR</div>
+          <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+gostaria+de+agendar+na+unidade+Londrina" class="unidade-link" target="_blank" rel="noopener">Quero agendar para Londrina</a>
         </div>
       </div>
     </div>
