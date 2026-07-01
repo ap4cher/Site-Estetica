@@ -408,31 +408,44 @@
     .step-highlight svg { width: 13px; height: 13px; stroke: var(--primary); fill: none; stroke-width: 2; }
 
     /* ── UNIDADES ── */
-    .unidades { background: var(--bg); }
+    .unidades {
+      background: linear-gradient(150deg, #3B1608 0%, #5C2C14 40%, #7D4535 80%, #924F41 100%);
+      position: relative; overflow: hidden;
+    }
+    .unidades-bg-img {
+      position: absolute; inset: 0;
+      background-image: url('assets/Fotos/Unidades.webp');
+      background-size: cover; background-position: center;
+      opacity: 0.15; z-index: 0; pointer-events: none;
+    }
+    .unidades > .container { position: relative; z-index: 2; }
+    .unidades .section-label { color: rgba(255,250,211,0.85) !important; }
+    .unidades .section-title { color: white; }
+    .unidades .section-sub { color: rgba(255,255,255,0.60); }
     .unidades-header { text-align: center; margin-bottom: 36px; }
     .unidades-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
     }
     .unidade-card {
-      background: white; border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.16);
       border-radius: var(--radius); padding: 20px 18px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .unidade-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+    .unidade-card:hover { border-color: rgba(255,255,255,0.38); background: rgba(255,255,255,0.13); }
     .unidade-estado {
       font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--primary); margin-bottom: 5px;
+      text-transform: uppercase; color: rgba(255,250,211,0.78); margin-bottom: 5px;
     }
-    .unidade-cidade { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 3px; }
-    .unidade-endereco { font-size: 0.78rem; color: var(--text-medium); line-height: 1.55; font-weight: 400; }
+    .unidade-cidade { font-weight: 700; font-size: 0.95rem; color: white; margin-bottom: 3px; }
+    .unidade-endereco { font-size: 0.78rem; color: rgba(255,255,255,0.52); line-height: 1.55; font-weight: 400; }
     .unidade-link {
       display: inline-flex; align-items: center; justify-content: center;
-      font-size: 0.76rem; font-weight: 700; color: var(--primary);
-      border: 1.5px solid var(--primary); border-radius: 50px;
+      font-size: 0.76rem; font-weight: 700; color: white;
+      border: 1.5px solid rgba(255,255,255,0.38); border-radius: 50px;
       padding: 7px 16px; margin-top: 12px;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .unidade-link:hover { background: var(--primary); color: white; }
+    .unidade-link:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.65); }
     @media (min-width: 768px) { .unidades-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1024px) { .unidades-grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -519,14 +532,22 @@
     }
 
     /* ── DEPOIMENTOS VSL ── */
-    .depoimentos { background: var(--bg); }
+    .depoimentos {
+      background: linear-gradient(150deg, #3B1608 0%, #5C2C14 40%, #7D4535 80%, #924F41 100%);
+    }
+    .depoimentos .section-label { color: rgba(255,250,211,0.85) !important; }
+    .depoimentos .section-title { color: white; }
     .vsl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
-    .vsl-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .vsl-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
     .vsl-video-wrap { position: relative; width: 100%; aspect-ratio: 9/16; background: var(--primary-dark); }
     .vsl-video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block; }
     .vsl-info { padding: 14px 16px 18px; }
     .vsl-tratamento { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #974a00; margin-bottom: 4px; }
     .vsl-nome { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
+
+    /* ── BARRA DIVISÓRIA ── */
+    .barra-divider { display: block; width: 100%; line-height: 0; font-size: 0; }
+    .barra-divider img { width: 100%; height: auto; display: block; }
 
     /* ── OFERTA ── */
     .oferta { background: white; }
@@ -715,10 +736,10 @@
           <img src="Assets/Logos/Logo Marrom.webp" alt="Vibe Terapias" width="140" height="40">
         </a>
         <nav class="header-nav" aria-label="Menu principal">
-          <a href="#sobre">Suas Dores</a>
+          <a href="#sobre">Sobre Nós</a>
           <a href="#depoimentos">Depoimentos</a>
           <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+preciso+de+informa%C3%A7%C3%B5es" target="_blank" rel="noopener">Contato</a>
-          <a href="#">Nossa Sessão</a>
+          <a href="#">Blog</a>
         </nav>
         <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+tudo+bem%3F+Gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+na+Vibe+Terapias"
            class="btn btn-primary" target="_blank" rel="noopener">
@@ -802,9 +823,10 @@
 
   <!-- 4. UNIDADES -->
   <section class="unidades section" id="unidades">
+    <div class="unidades-bg-img" aria-hidden="true"></div>
     <div class="container">
       <div class="unidades-header">
-        <span class="section-label" style="color:#974a00;">Estamos perto de você</span>
+        <span class="section-label">Estamos perto de você</span>
         <h2 class="section-title">Nossas Unidades</h2>
         <p class="section-sub" style="max-width:500px;margin:0 auto;">Escolha a unidade mais próxima e agende sua avaliação hoje.</p>
       </div>
@@ -934,6 +956,11 @@
     </div>
   </section>
 
+  <!-- BARRA DIVISÓRIA -->
+  <div class="barra-divider" aria-hidden="true">
+    <img src="assets/Barra.svg" alt="">
+  </div>
+
   <!-- 6. TRATAMOS — MOSAICO -->
   <section class="tratamos section" id="sobre">
     <div class="container">
@@ -1052,7 +1079,7 @@
   <section class="depoimentos section" id="depoimentos">
     <div class="container">
       <div class="text-center">
-        <span class="section-label" style="color:#974a00;">Quem já passou por aqui</span>
+        <span class="section-label">Quem já passou por aqui</span>
         <h2 class="section-title">Veja quem a Vibe já transformou</h2>
       </div>
       <div class="vsl-grid">
@@ -1164,7 +1191,7 @@
         <div class="faq-item">
           <div class="faq-trigger">
             <span class="faq-q">O tratamento é doloroso?</span>
-            <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 x"/></svg>
           </div>
           <div class="faq-body">
             <div class="faq-body-inner">A liberação miofascial pode gerar leve desconforto pontual, mas é tolerável. O objetivo é aliviar — não causar — dor. A maioria dos pacientes sente alívio já durante a sessão.</div>
@@ -1294,7 +1321,7 @@
 
     // Header adaptativo — transparente em seções escuras, branco em seções claras
     const header = document.getElementById('header');
-    const darkSectionClasses = ['identifica', 'hero', 'tratamos', 'cta-final'];
+    const darkSectionClasses = ['identifica', 'hero', 'tratamos', 'cta-final', 'unidades', 'depoimentos'];
     function updateHeader() {
       const headerH = header.offsetHeight;
       const mid = headerH / 2;
