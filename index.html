@@ -272,15 +272,15 @@
       background: var(--bg);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 28px 0;
+      padding: 34px 0;
     }
     .proof-inner {
       display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 0;
     }
-    .proof-item { display: flex; flex-direction: column; align-items: center; padding: 0 24px; }
-    .proof-num { font-family: var(--font-display); font-size: 1.7rem; color: var(--primary-dark); line-height: 1; }
-    .proof-label { font-size: 0.72rem; color: var(--text-medium); font-weight: 500; letter-spacing: 0.04em; text-align: center; margin-top: 3px; }
-    .proof-divider { width: 1px; height: 44px; background: var(--border); align-self: center; }
+    .proof-item { display: flex; flex-direction: column; align-items: stretch; flex: 1; min-width: 140px; padding: 0 28px; }
+    .proof-num { font-family: var(--font-display); font-size: 2rem; color: var(--primary-dark); line-height: 1; text-align: center; display: block; }
+    .proof-label { font-size: 0.80rem; color: var(--text-medium); font-weight: 500; letter-spacing: 0.04em; text-align: center; margin-top: 5px; }
+    .proof-divider { width: 1px; height: 52px; background: var(--border); align-self: center; flex: none; }
 
     /* ── BG MARROM ── */
     .bg-marrom {
