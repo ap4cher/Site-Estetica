@@ -722,6 +722,30 @@
       transition: opacity 0.2s;
     }
     .btn-chat-cta:hover { opacity: 0.88; }
+    .chat-bottom { display: flex; align-items: flex-end; gap: 10px; }
+    .chat-preview {
+      background: white; border-radius: 12px 12px 4px 12px;
+      padding: 11px 28px 11px 13px; max-width: 210px; position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+      display: none; animation: chatSlideIn 0.32s ease;
+    }
+    .chat-preview::after {
+      content: ''; position: absolute;
+      bottom: 16px; right: -8px;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 9px solid white;
+    }
+    .chat-preview-close {
+      position: absolute; top: 6px; right: 7px;
+      background: none; border: none; color: #bbb;
+      font-size: 0.72rem; cursor: pointer; padding: 0; line-height: 1;
+    }
+    .chat-preview-close:hover { color: #888; }
+    .chat-preview-msg {
+      font-size: 0.82rem; line-height: 1.55; color: #2A1409; margin: 0;
+      transition: opacity 0.3s ease;
+    }
     .chat-avatar-btn {
       width: 62px; height: 62px; border-radius: 50%; position: relative;
       display: block; flex-shrink: 0; cursor: pointer; border: none;
@@ -743,6 +767,10 @@
     @keyframes chatSlideUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes chatSlideIn {
+      from { opacity: 0; transform: translateX(8px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
 
     @media (max-width: 639px) { .hero { align-items: center; } }
@@ -813,10 +841,16 @@
         </a>
       </div>
     </div>
-    <button class="chat-avatar-btn" onclick="openChat()" aria-label="Falar com Aline">
-      <img src="Assets/Fotos/Chat.webp" alt="Aline">
-      <span class="chat-avatar-dot"></span>
-    </button>
+    <div class="chat-bottom">
+      <div class="chat-preview" id="chatPreview">
+        <button class="chat-preview-close" onclick="closePreview(event)" aria-label="Fechar">✕</button>
+        <p class="chat-preview-msg" id="chatPreviewMsg">Posso te ajudar a agendar sua <strong>avaliação gratuita!</strong></p>
+      </div>
+      <button class="chat-avatar-btn" onclick="openChat()" aria-label="Falar com Aline">
+        <img src="Assets/Fotos/Chat.webp" alt="Aline">
+        <span class="chat-avatar-dot"></span>
+      </button>
+    </div>
   </div>
 
   <!-- HEADER LP -->
@@ -1549,7 +1583,39 @@
         setTimeout(function() { chatCta.style.display = 'block'; }, 300);
       }
 
+      // Preview bubble
+      const preview = document.getElementById('chatPreview');
+      const previewMsg = document.getElementById('chatPreviewMsg');
+      const PREVIEW_MSGS = [
+        'Posso te ajudar a agendar sua <strong>avaliação gratuita!</strong>',
+        'Está com dores? Nosso protocolo te ajuda a <strong>viver sem dor!</strong>',
+        '<strong>+45 mil</strong> atendimentos realizados. Agende agora!'
+      ];
+      let previewIdx = 0;
+      let previewTimer;
+
+      setTimeout(function() {
+        if (!opened) {
+          preview.style.display = 'block';
+          previewTimer = setInterval(function() {
+            previewMsg.style.opacity = '0';
+            setTimeout(function() {
+              previewIdx = (previewIdx + 1) % PREVIEW_MSGS.length;
+              previewMsg.innerHTML = PREVIEW_MSGS[previewIdx];
+              previewMsg.style.opacity = '1';
+            }, 300);
+          }, 4000);
+        }
+      }, 3000);
+
+      window.closePreview = function(e) {
+        e.stopPropagation();
+        preview.style.display = 'none';
+        clearInterval(previewTimer);
+      };
       window.openChat = function() {
+        preview.style.display = 'none';
+        clearInterval(previewTimer);
         chatBox.classList.add('open');
         if (!opened) { opened = true; playMsgs(); }
       };
