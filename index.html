@@ -661,20 +661,137 @@
     @media (min-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 
-    /* ── WHATSAPP FLUTUANTE ── */
-    .float-wpp {
+    /* ── CHAT WIDGET ── */
+    .chat-widget {
       position: fixed; bottom: 22px; right: 18px;
-      width: 62px; height: 62px; background: var(--whatsapp);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 24px rgba(37,211,102,0.50); z-index: 98;
-      transition: transform 0.2s; animation: pulse-wpp 2.8s infinite;
-      text-decoration: none; -webkit-tap-highlight-color: transparent;
+      z-index: 999; display: flex; flex-direction: column;
+      align-items: flex-end; gap: 10px;
     }
-    .float-wpp:active { transform: scale(0.93); }
-    .float-wpp svg { width: 30px; height: 30px; fill: white; }
-    @keyframes pulse-wpp {
-      0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,0.50); }
-      50%       { box-shadow: 0 4px 40px rgba(37,211,102,0.70), 0 0 0 10px rgba(37,211,102,0.08); }
+    .chat-dot {
+      position: absolute; width: 13px; height: 13px;
+      background: #25D366; border-radius: 50%;
+      border: 2px solid white; bottom: 2px; right: 2px;
+    }
+    .chat-avatar-btn {
+      width: 64px; height: 64px; border-radius: 50%;
+      border: 3px solid white; overflow: visible;
+      cursor: pointer; position: relative; padding: 0;
+      background: none; flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(125,69,53,0.40);
+      transition: transform 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .chat-avatar-btn:hover { transform: scale(1.06); }
+    .chat-avatar-btn img {
+      width: 64px; height: 64px; border-radius: 50%;
+      object-fit: cover; display: block;
+    }
+    .chat-preview {
+      background: white; border-radius: 16px 16px 4px 16px;
+      padding: 12px 34px 12px 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+      max-width: 230px; font-size: 0.83rem; line-height: 1.55;
+      color: #2A1409; cursor: pointer; position: relative;
+      display: none;
+      animation: chatSlideIn 0.35s ease;
+    }
+    .chat-preview-close {
+      position: absolute; top: 8px; right: 9px;
+      background: none; border: none; color: #bbb;
+      font-size: 0.85rem; cursor: pointer; padding: 0; line-height: 1;
+    }
+    .chat-preview-close:hover { color: #888; }
+    .chat-box {
+      width: 312px; background: white; border-radius: 18px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+      overflow: hidden; display: none; flex-direction: column;
+    }
+    .chat-box.open { display: flex; animation: chatSlideUp 0.3s ease; }
+    .chat-header {
+      background: linear-gradient(135deg, #7D4535 0%, #4E2518 100%);
+      padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .chat-header-av {
+      position: relative; width: 44px; height: 44px; flex-shrink: 0;
+    }
+    .chat-header-av img {
+      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.30);
+    }
+    .chat-header-av .chat-dot { bottom: 0; right: 0; }
+    .chat-header-name {
+      display: block; font-weight: 700; font-size: 0.88rem; color: white;
+    }
+    .chat-header-status {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.80);
+    }
+    .chat-header-status::before {
+      content: ''; width: 7px; height: 7px;
+      background: #25D366; border-radius: 50%;
+    }
+    .chat-close-btn {
+      margin-left: auto; flex-shrink: 0;
+      background: rgba(255,255,255,0.18); border: none;
+      color: white; width: 28px; height: 28px; border-radius: 50%;
+      cursor: pointer; font-size: 0.82rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chat-close-btn:hover { background: rgba(255,255,255,0.30); }
+    .chat-messages {
+      padding: 16px; background: #f5ede8;
+      display: flex; flex-direction: column; gap: 10px; min-height: 110px;
+    }
+    .chat-msg {
+      display: flex; align-items: flex-start; gap: 8px;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.38s ease, transform 0.38s ease;
+    }
+    .chat-msg.visible { opacity: 1; transform: translateY(0); }
+    .chat-msg-av {
+      width: 30px; height: 30px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0; margin-top: 2px;
+    }
+    .chat-msg-bubble {
+      background: white; border-radius: 4px 14px 14px 14px;
+      padding: 9px 13px; font-size: 0.82rem; line-height: 1.55;
+      color: #2A1409; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      max-width: calc(100% - 38px);
+    }
+    .chat-typing {
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .chat-typing-bubble {
+      background: white; border-radius: 4px 14px 14px 14px;
+      padding: 10px 14px; display: flex; gap: 4px; align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .chat-typing-bubble span {
+      width: 6px; height: 6px; background: #bbb; border-radius: 50%;
+      animation: chatDots 1.2s infinite ease-in-out;
+    }
+    .chat-typing-bubble span:nth-child(2) { animation-delay: 0.18s; }
+    .chat-typing-bubble span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes chatDots {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+    .chat-cta { padding: 12px 14px; background: white; }
+    .btn-chat-cta {
+      display: block; width: 100%;
+      background: linear-gradient(135deg, #7D4535, #4E2518);
+      color: white; text-align: center; padding: 13px;
+      border-radius: 50px; font-weight: 700; font-size: 0.88rem;
+      text-decoration: none; transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-chat-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    @keyframes chatSlideIn {
+      from { opacity: 0; transform: translateX(14px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes chatSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 639px) { .hero { align-items: center; } }
@@ -717,19 +834,50 @@
       .steps-grid { max-width: 680px; margin-left: auto; margin-right: auto; }
       .dif-grid-lp { grid-template-columns: repeat(3, 1fr); }
       .vsl-grid { grid-template-columns: repeat(4, 1fr); }
-      .float-wpp { width: 58px; height: 58px; bottom: 28px; right: 28px; }
+      .chat-widget { bottom: 28px; right: 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- WHATSAPP FLUTUANTE -->
-  <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Ol%C3%A1%2C+tudo+bem%3F+Gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+na+Vibe+Terapias"
-     class="float-wpp" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-  </a>
+  <!-- CHAT WIDGET -->
+  <div class="chat-widget" id="chatWidget">
+
+    <!-- Preview (aparece após 4s) -->
+    <div class="chat-preview" id="chatPreview" onclick="openChat()">
+      <button class="chat-preview-close" onclick="closePreview(event)" aria-label="Fechar">✕</button>
+      <p>Oi! Sou a <strong>Aline</strong>, da Vibe Terapias. Posso te ajudar a agendar sua <strong>avaliação gratuita</strong>? 😊</p>
+    </div>
+
+    <!-- Chat box -->
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <div class="chat-header-av">
+          <img src="Assets/Fotos/Chat.webp" alt="Aline">
+          <span class="chat-dot"></span>
+        </div>
+        <div>
+          <span class="chat-header-name">Aline Gonçalves</span>
+          <span class="chat-header-status">Online agora</span>
+        </div>
+        <button class="chat-close-btn" onclick="closeChat()" aria-label="Fechar">✕</button>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-cta" id="chatCta" style="display:none;">
+        <a href="https://api.whatsapp.com/send/?phone=554384137634&text=Oi+Aline%2C+tudo+bem%3F+Gostaria+de+agendar+minha+avalia%C3%A7%C3%A3o+gratuita+na+Vibe+Terapias!"
+           class="btn-chat-cta" target="_blank" rel="noopener">
+          Sim, quero conversar →
+        </a>
+      </div>
+    </div>
+
+    <!-- Botão avatar -->
+    <button class="chat-avatar-btn" onclick="openChat()" aria-label="Falar com atendente">
+      <img src="Assets/Fotos/Chat.webp" alt="Aline">
+      <span class="chat-dot"></span>
+    </button>
+
+  </div>
 
   <!-- HEADER LP -->
   <header class="header" id="header">
@@ -1430,6 +1578,72 @@
       el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
       observer.observe(el);
     });
+
+    // Chat Widget
+    (function() {
+      const chatBox      = document.getElementById('chatBox');
+      const chatPreview  = document.getElementById('chatPreview');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatCta      = document.getElementById('chatCta');
+      let opened = false;
+
+      const MSGS = [
+        'Oi! Tudo bem? 😊 Sou a Aline, da Vibe Terapias.',
+        'Aqui ajudamos pessoas a conquistar uma vida <strong>sem dores</strong> com nosso protocolo exclusivo de liberação miofascial.',
+        'Posso te ajudar a agendar sua <strong>avaliação gratuita</strong> agora mesmo. Qual dor está te incomodando?'
+      ];
+
+      setTimeout(function() {
+        if (!opened) chatPreview.style.display = 'block';
+      }, 4000);
+
+      function typing() {
+        const el = document.createElement('div');
+        el.className = 'chat-typing';
+        el.innerHTML = '<img src="Assets/Fotos/Chat.webp" class="chat-msg-av" alt="">'
+          + '<div class="chat-typing-bubble"><span></span><span></span><span></span></div>';
+        chatMessages.appendChild(el);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return el;
+      }
+
+      function addMsg(text, delay) {
+        return new Promise(function(resolve) {
+          var t = typing();
+          setTimeout(function() {
+            t.remove();
+            var m = document.createElement('div');
+            m.className = 'chat-msg';
+            m.innerHTML = '<img src="Assets/Fotos/Chat.webp" class="chat-msg-av" alt="Aline">'
+              + '<div class="chat-msg-bubble">' + text + '</div>';
+            chatMessages.appendChild(m);
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() { m.classList.add('visible'); });
+            });
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            resolve();
+          }, delay);
+        });
+      }
+
+      async function playMsgs() {
+        await addMsg(MSGS[0], 900);
+        await addMsg(MSGS[1], 1400);
+        await addMsg(MSGS[2], 1400);
+        setTimeout(function() { chatCta.style.display = 'block'; }, 300);
+      }
+
+      window.openChat = function() {
+        chatPreview.style.display = 'none';
+        chatBox.classList.add('open');
+        if (!opened) { opened = true; playMsgs(); }
+      };
+      window.closeChat = function() { chatBox.classList.remove('open'); };
+      window.closePreview = function(e) {
+        e.stopPropagation();
+        chatPreview.style.display = 'none';
+      };
+    })();
   </script>
 
 </body>
