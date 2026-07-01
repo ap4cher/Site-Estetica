@@ -270,9 +270,14 @@
 
     /* ── PROVA SOCIAL ── */
     .proof-strip {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 5;
+      margin-top: -54px;
+      background: rgba(255, 248, 243, 0.52);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-top: 1px solid rgba(255,255,255,0.72);
+      border-bottom: 1px solid rgba(125,69,53,0.12);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.80);
       padding: 34px 0;
     }
     .proof-inner {
@@ -280,8 +285,9 @@
     }
     .proof-item { display: flex; flex-direction: column; align-items: stretch; flex: 1; min-width: 140px; padding: 0 28px; }
     .proof-num { font-family: var(--font-display); font-size: 2rem; color: var(--primary-dark); line-height: 1; text-align: center; display: block; }
+    .proof-item:first-child .proof-num { font-size: 2.7rem; }
     .proof-label { font-size: 0.80rem; color: var(--text-medium); font-weight: 500; letter-spacing: 0.04em; text-align: center; margin-top: 5px; }
-    .proof-divider { width: 1px; height: 52px; background: var(--border); align-self: center; flex: none; }
+    .proof-divider { width: 1px; height: 52px; background: rgba(125,69,53,0.18); align-self: center; flex: none; }
 
     /* ── BG MARROM ── */
     .bg-marrom {
@@ -292,7 +298,7 @@
     /* ── IDENTIFICA (hero premium) ── */
     .identifica {
       background: linear-gradient(150deg, #3B1608 0%, #5C2C14 40%, #7D4535 80%, #924F41 100%);
-      position: relative; overflow: hidden;
+      position: relative; overflow: hidden; padding-bottom: 68px;
     }
     .identifica::before {
       content: '';
