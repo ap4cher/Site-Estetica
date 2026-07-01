@@ -270,14 +270,9 @@
 
     /* ── PROVA SOCIAL ── */
     .proof-strip {
-      position: relative; z-index: 5;
-      margin-top: -54px;
-      background: rgba(245, 235, 230, 0.68);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border-top: 1px solid rgba(255,255,255,0.72);
-      border-bottom: 1px solid rgba(125,69,53,0.12);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.80);
+      background: var(--primary-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       padding: 34px 0;
     }
     .proof-inner {
@@ -297,7 +292,7 @@
     /* ── IDENTIFICA (hero premium) ── */
     .identifica {
       background: linear-gradient(150deg, #3B1608 0%, #5C2C14 40%, #7D4535 80%, #924F41 100%);
-      position: relative; overflow: hidden; padding-bottom: 68px;
+      position: relative; overflow: hidden;
     }
     .identifica::before {
       content: '';
@@ -708,7 +703,7 @@
       font-size: 0.75rem; cursor: pointer; padding: 0; line-height: 1;
     }
     .chat-bubble-close:hover { color: #999; }
-    .chat-rotate-wrap { position: relative; height: 62px; }
+    .chat-rotate-wrap { position: relative; height: 110px; }
     .chat-rotate-msg {
       font-size: 0.82rem; line-height: 1.55; color: #2A1409; margin: 0;
       position: absolute; top: 0; left: 0; width: 100%;
